@@ -317,17 +317,11 @@ export default (
       }
 
       getOrSetStylesInCache(context, props, styleNames, path) {
-        if (themeCache && themeCache[path.join(">")]) {
-          // console.log('**************');
-
-          return themeCache[path.join(">")];
-        } else {
-          const resolvedStyle = this.resolveStyle(context, props, styleNames);
-          if (Object.keys(themeCache).length < 10000) {
-            themeCache[path.join(">")] = resolvedStyle;
-          }
-          return resolvedStyle;
+        const resolvedStyle = this.resolveStyle(context, props, styleNames);
+        if(Object.keys(themeCache).length < 10000) {
+          themeCache[path.join('>')] = resolvedStyle;
         }
+        return resolvedStyle;
       }
 
       resolveStyle(context, props, styleNames) {
