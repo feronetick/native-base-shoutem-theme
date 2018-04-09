@@ -9,7 +9,7 @@ export default function customMerge(obj1, obj2) {
   }
 
   for (property1 in obj1) {
-    if (obj2[property1] != null) {
+    if (property1 in obj2) {
       if (
         typeof obj1[property1] !== 'object' ||
         typeof obj2[property1] !== 'object' ||
@@ -25,11 +25,10 @@ export default function customMerge(obj1, obj2) {
     }
   }
   for (property2 in obj2) {
-    if (obj1[property2] != null) {
-      // already merged !
-    } else {
+    if (!(property2 in objToReturn)) {
       objToReturn[property2] = obj2[property2];
     }
   }
+
   return objToReturn;
 }
